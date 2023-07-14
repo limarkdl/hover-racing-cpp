@@ -9,7 +9,7 @@
 */
 
 
-#include <TL-Engine.h>	// TL-Engine include file and namespace
+#include <TL-Engine.h>	
 using namespace tle;
 
 void main()
@@ -17,9 +17,24 @@ void main()
 	I3DEngine* myEngine = New3DEngine( kTLX );
 	myEngine->StartWindowed();
 
-	myEngine->AddMediaFolder( "C:\\ProgramData\\TL-Engine\\Media" );
+	// Importing media
+	myEngine->AddMediaFolder( ".\\LICENSED_&_PROTECTED_MEDIA" );
 
 
+	// NEEDS TO BE PUT INSIDE A SEPARATED MODULE !!!
+	// CameraController.h
+	ICamera* myCamera = myEngine->CreateCamera(kFPS);
+	//
+
+	// NEEDS TO BE PUT INSIDE A SEPARATED MODULE !!!
+	// MeshManager.h
+	IMesh* hover = myEngine->LoadMesh("race2.x");
+	//
+
+	// NEEDS TO BE PUT INSIDE A SEPARATED MODULE !!!
+	// PlayerController.h
+	IModel* player = hover->CreateModel();
+	//
 
 	while (myEngine->IsRunning())
 	{
